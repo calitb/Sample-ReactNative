@@ -4,6 +4,7 @@
     "slug": "RNApp",
     "version": "1.0.0",
     "orientation": "portrait",
+    "privacy": "unlisted",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -21,6 +22,10 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "description": "My ReactNative demo",
+    "android": {
+      "package": "com.calitb.RNApp"
     }
   }
 }
