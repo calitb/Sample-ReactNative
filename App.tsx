@@ -1,13 +1,22 @@
-import React, { Fragment } from 'react';
+import 'react-native-gesture-handler';
 
-import MiComponente from "./MiComponente"
+import DetailScreen from "./DetailScreen"
+import HomeScreen from "./HomeScreen"
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <Fragment>
+    <NavigationContainer>
       <StatusBar style="dark" />
-      <MiComponente />
-    </Fragment>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Detail" component={DetailScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
