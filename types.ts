@@ -1,5 +1,4 @@
-import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackScreenProps } from '@react-navigation/stack';
 
 // se define que parametros recibe cada ruta
 type RootStackParamList = {
@@ -9,8 +8,5 @@ type RootStackParamList = {
   };
 };
 
-export type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
-export type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
-
-export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Detail'>;
-export type DetailScreenRouteProp = RouteProp<RootStackParamList, 'Detail'>;
+export type HomeScreenStackProp = StackScreenProps<RootStackParamList, 'Home'>;
+export type DetailScreenStackProp = StackScreenProps<RootStackParamList, 'Detail'>;

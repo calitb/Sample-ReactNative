@@ -1,11 +1,9 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
-import { HomeScreenNavigationProp, HomeScreenRouteProp } from "../types";
 import React, { useState } from 'react';
 
-type Props = {
-  navigation: HomeScreenNavigationProp;
-  route: HomeScreenRouteProp;
-};
+import { HomeScreenStackProp } from "../types";
+
+interface Props extends HomeScreenStackProp { }
 
 export default function HomeScreen(props: Props) {
   const [contador, setContador] = useState(0);

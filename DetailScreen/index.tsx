@@ -1,6 +1,6 @@
-import { DetailScreenNavigationProp, DetailScreenRouteProp } from "../types"
 import { StyleSheet, Text, View } from 'react-native';
 
+import { DetailScreenStackProp } from "../types"
 import React from 'react';
 
 const styles = StyleSheet.create({
@@ -11,10 +11,7 @@ const styles = StyleSheet.create({
   }
 });
 
-interface Props {
-  navigation: DetailScreenNavigationProp;
-  route: DetailScreenRouteProp;
-}
+interface Props extends DetailScreenStackProp { }
 
 export default function DetailScreen(props: Props) {
   const contador = props.route.params.contador;
