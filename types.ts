@@ -1,13 +1,16 @@
+import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ViewStyle } from 'react-native';
 
 // se define que parametros recibe cada ruta
 type RootStackParamList = {
-  Home: {
-    style?: ViewStyle;
+  Home: {};
+  Detail: {
+    contador: number;
   };
-  Detail: {};
 };
 
-export type HomeScreennNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
-export type DetailScreennNavigationProp = StackNavigationProp<RootStackParamList, 'Detail'>;
+export type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+export type HomeScreenRouteProp = RouteProp<RootStackParamList, 'Home'>;
+
+export type DetailScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Detail'>;
+export type DetailScreenRouteProp = RouteProp<RootStackParamList, 'Detail'>;
