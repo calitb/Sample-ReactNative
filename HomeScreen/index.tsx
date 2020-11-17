@@ -1,21 +1,19 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
-import React, { useReducer } from 'react';
 
 import { HomeScreenStackProp } from "../types";
-import { incrementar } from "../redux/actions"
-import reducer from "../redux/reducer"
-import store from "../redux/store";
+import React from 'react';
+import useRedux from "../redux/useRedux";
 
 interface Props extends HomeScreenStackProp { }
 
 export default function HomeScreen(props: Props) {
-  const [state, dispatch] = useReducer(reducer, store)
+  const [state, dispatch] = useRedux();
 
   return (
     <View style={[styles.container]} >
       <Text>{state.contador}</Text>
       <Button onPress={() => {
-        dispatch(incrementar())
+        dispatch({ type: 'INCREMENTAR' })
       }} title="Contar" />
       <Button onPress={() => {
         props.navigation.navigate("Detail", { contador: state.contador }); // nombre de la ruta, y los parametros
