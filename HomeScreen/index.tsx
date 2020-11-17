@@ -1,17 +1,20 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
+import React, { useContext } from 'react';
 
 import { HomeScreenStackProp } from "../types";
-import React from 'react';
+import { MyContext } from "../App"
 import useRedux from "../redux/useRedux";
 
 interface Props extends HomeScreenStackProp { }
 
 export default function HomeScreen(props: Props) {
   const [state, dispatch] = useRedux();
+  const contexto = useContext(MyContext);
 
   return (
     <View style={[styles.container]} >
       <Text>{state.contador}</Text>
+      <Text>Mi Coontexto es:   {contexto.name}</Text>
       <Button onPress={() => {
         dispatch({ type: 'INCREMENTAR' })
       }} title="Contar" />
