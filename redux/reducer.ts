@@ -1,9 +1,21 @@
 import Action from './actions';
 import { State } from './store';
 
-export default function reducer(state: State, action: Action) {
+export default function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'INCREMENTAR':
-      return { ...state, contador: state.contador + 1 };
+    case 'SELECCIONAR_PERSONAJE': {
+      const nuevoState = { ...state };
+      nuevoState.personaje = action.personaje;
+
+      return nuevoState;
+    }
+    case 'SET_PERSONAJES': {
+      const nuevoState = { ...state };
+      nuevoState.personajes = action.personajes;
+
+      return nuevoState;
+    }
   }
+
+  return state;
 }

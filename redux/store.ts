@@ -1,9 +1,17 @@
+export interface Personaje {
+  id: string;
+  name: string;
+  image: string;
+}
+
 export interface State {
-  contador: number;
+  personajes: Personaje[];
+  personaje?: Personaje;
 }
 
 const store: State = {
-  contador: 0,
+  personajes: [],
+  personaje: undefined,
 };
 
 export default store;

@@ -11,12 +11,12 @@ export default function HomeScreen(props: Props) {
 
   return (
     <View style={[styles.container]} >
-      <Text>{state.contador}</Text>
+      <Text>Numero de personajes: {state.personajes.length}</Text>
       <Button onPress={() => {
-        dispatch({ type: 'INCREMENTAR' })
+        dispatch({ type: 'OBTENER_PERSONAJES' })
       }} title="Contar" />
       <Button onPress={() => {
-        props.navigation.navigate("Detail", { contador: state.contador }); // nombre de la ruta, y los parametros
+        props.navigation.navigate("Detail", { contador: 0 }); // nombre de la ruta, y los parametros
       }} title="Abrir detalle" />
     </View>
   )
