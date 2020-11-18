@@ -2,27 +2,29 @@ import 'react-native-gesture-handler';
 
 import React, { createContext } from 'react';
 
+import Action from "./redux/actions"
 import DetailScreen from "./DetailScreen"
 import HomeScreen from "./HomeScreen"
 import { NavigationContainer } from '@react-navigation/native';
+import { State } from './redux/store';
 import { StatusBar } from 'expo-status-bar';
 import { createStackNavigator } from '@react-navigation/stack';
+import useRedux from "./redux/useRedux";
 
 const Stack = createStackNavigator();
 
 interface MyContextProps {
-  name: string;
+  state: State,
+  dispatch: React.Dispatch<Action>
 }
 
-const initialValues: MyContextProps = {
-  name: "Carlos"
-}
-
-export const MyContext = createContext<MyContextProps>(initialValues)
+export const MyContext = createContext<MyContextProps>({})
 
 export default function App() {
+  const [state, dispatch] = useRedux();
+
   return (
-    <MyContext.Provider value={initialValues}>
+    <MyContext.Provider value={{ state, dispatch }}>
       <NavigationContainer>
         <StatusBar style="dark" />
         <Stack.Navigator initialRouteName="Home">
