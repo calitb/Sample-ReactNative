@@ -11,7 +11,9 @@ export default function HomeScreen(props: Props) {
 
   return (
     <View style={[styles.container]} >
-      <Text>Numero de personajes: {state.characters.length}</Text>
+      <Text>Numero de personajes: {state.characters.length}
+        {JSON.stringify(state.characters)}
+      </Text>
       <Button onPress={() => {
         dispatch({ type: 'FETCH_CHARACTERS' })
       }} title="Contar" />

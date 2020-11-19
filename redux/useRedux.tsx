@@ -2,6 +2,7 @@ import initialState, { State } from './store';
 import { useContext, useReducer } from 'react';
 
 import Action from './actions';
+import React from "react"
 import { createContext } from 'react';
 import reducer from './reducer';
 
