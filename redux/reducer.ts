@@ -15,6 +15,12 @@ export default function reducer(state: State, action: Action): State {
 
       return nuevoState;
     }
+    case 'OBTENER_PERSONAJES': {
+      const nuevoState = { ...state };
+      nuevoState.personajes = [{ id: '1', name: 'Rick', image: 'imagen.png' }];
+
+      return nuevoState;
+    }
   }
 
   return state;

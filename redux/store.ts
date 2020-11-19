@@ -9,9 +9,9 @@ export interface State {
   personaje?: Personaje;
 }
 
-const store: State = {
+const initialState: State = {
   personajes: [],
   personaje: undefined,
 };
 
-export default store;
+export default initialState;

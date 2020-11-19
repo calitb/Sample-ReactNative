@@ -1,13 +1,13 @@
 import { Button, StyleSheet, Text, View } from 'react-native';
-import React, { useContext } from 'react';
 
 import { HomeScreenStackProp } from "../types";
-import { MyContext } from "../App"
+import React from 'react';
+import useRedux from "../redux/useRedux"
 
 interface Props extends HomeScreenStackProp { }
 
 export default function HomeScreen(props: Props) {
-  const { state, dispatch } = useContext(MyContext);
+  const { state, dispatch } = useRedux();
 
   return (
     <View style={[styles.container]} >
@@ -18,6 +18,23 @@ export default function HomeScreen(props: Props) {
       <Button onPress={() => {
         props.navigation.navigate("Detail", { contador: 0 }); // nombre de la ruta, y los parametros
       }} title="Abrir detalle" />
+
+      <MyView>
+        <Text>Hello</Text>
+      </MyView>
+
+    </View>
+  )
+}
+
+interface MyViewProps {
+  children: React.ReactNode;
+}
+
+function MyView(props: MyViewProps) {
+  return (
+    <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'lightgray', width: 160, height: 160, borderRadius: 80 }}>
+      {props.children}
     </View>
   )
 }
