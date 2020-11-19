@@ -9,4 +9,5 @@ type RootStackParamList = {
 };
 
 export type HomeScreenStackProp = StackScreenProps<RootStackParamList, 'Home'>;
+
 export type DetailScreenStackProp = StackScreenProps<RootStackParamList, 'Detail'>;

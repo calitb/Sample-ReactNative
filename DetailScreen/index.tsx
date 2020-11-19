@@ -11,10 +11,8 @@ const styles = StyleSheet.create({
   }
 });
 
-interface Props extends DetailScreenStackProp { }
-
-export default function DetailScreen(props: Props) {
-  const contador = props.route.params.contador;
+export default function DetailScreen(props: DetailScreenStackProp) {
+  const { contador } = props.route.params;
   return (
     <View style={styles.container} >
       <Text>El valor es {contador}</Text>

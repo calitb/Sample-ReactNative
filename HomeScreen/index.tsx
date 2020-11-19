@@ -4,9 +4,7 @@ import { HomeScreenStackProp } from "../types";
 import React from 'react';
 import useRedux from "../redux/useRedux"
 
-interface Props extends HomeScreenStackProp { }
-
-export default function HomeScreen(props: Props) {
+export default function HomeScreen(props: HomeScreenStackProp) {
   const { state, dispatch } = useRedux();
 
   return (
