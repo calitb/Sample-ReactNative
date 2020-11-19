@@ -11,9 +11,9 @@ export default function HomeScreen(props: Props) {
 
   return (
     <View style={[styles.container]} >
-      <Text>Numero de personajes: {state.personajes.length}</Text>
+      <Text>Numero de personajes: {state.characters.length}</Text>
       <Button onPress={() => {
-        dispatch({ type: 'OBTENER_PERSONAJES' })
+        dispatch({ type: 'FETCH_CHARACTERS' })
       }} title="Contar" />
       <Button onPress={() => {
         props.navigation.navigate("Detail", { contador: 0 }); // nombre de la ruta, y los parametros

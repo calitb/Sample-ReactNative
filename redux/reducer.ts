@@ -3,23 +3,23 @@ import { State } from './store';
 
 export default function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'SELECCIONAR_PERSONAJE': {
-      const nuevoState = { ...state };
-      nuevoState.personaje = action.personaje;
+    case 'SET_CHARACTER': {
+      const newState = { ...state };
+      newState.character = action.character;
 
-      return nuevoState;
+      return newState;
     }
-    case 'SET_PERSONAJES': {
-      const nuevoState = { ...state };
-      nuevoState.personajes = action.personajes;
+    case 'SET_CHARACTERS': {
+      const newState = { ...state };
+      newState.characters = action.characters;
 
-      return nuevoState;
+      return newState;
     }
-    case 'OBTENER_PERSONAJES': {
-      const nuevoState = { ...state };
-      nuevoState.personajes = [{ id: '1', name: 'Rick', image: 'imagen.png' }];
+    case 'FETCH_CHARACTERS': {
+      const newState = { ...state };
+      newState.characters = [{ id: '1', name: 'Rick', image: 'imagen.png' }];
 
-      return nuevoState;
+      return newState;
     }
   }
 

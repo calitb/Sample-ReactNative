@@ -1,17 +1,17 @@
-export interface Personaje {
+export interface Character {
   id: string;
   name: string;
   image: string;
 }
 
 export interface State {
-  personajes: Personaje[];
-  personaje?: Personaje;
+  characters: Character[];
+  character?: Character;
 }
 
 const initialState: State = {
-  personajes: [],
-  personaje: undefined,
+  characters: [],
+  character: undefined,
 };
 
 export default initialState;

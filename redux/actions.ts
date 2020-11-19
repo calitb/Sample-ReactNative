@@ -1,19 +1,19 @@
-import { Personaje } from './store';
+import { Character } from './store';
 
-interface SeleccionarPersonaje {
-  type: 'SELECCIONAR_PERSONAJE';
-  personaje: Personaje;
+interface SetCharacter {
+  type: 'SET_CHARACTER';
+  character: Character;
 }
 
-interface SetPersonajes {
-  type: 'SET_PERSONAJES';
-  personajes: Personaje[];
+interface SetCharacters {
+  type: 'SET_CHARACTERS';
+  characters: Character[];
 }
 
-interface ObtenerPersonajes {
-  type: 'OBTENER_PERSONAJES';
+interface FetchCharacters {
+  type: 'FETCH_CHARACTERS';
 }
 
-type Action = SeleccionarPersonaje | ObtenerPersonajes | SetPersonajes;
+type Action = SetCharacter | FetchCharacters | SetCharacters;
 
 export default Action;
