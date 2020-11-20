@@ -1,5 +1,6 @@
+import { Character, State } from './store';
+
 import Action from './actions';
-import { State } from './store';
 
 export default function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -17,7 +18,7 @@ export default function reducer(state: State, action: Action): State {
     }
     case 'FETCH_CHARACTERS': {
       const newState = { ...state };
-      newState.characters = [{ id: '1', name: 'Rick', image: 'imagen.png' }];
+      newState.characters = CHARACTERS;
 
       return newState;
     }
@@ -25,3 +26,31 @@ export default function reducer(state: State, action: Action): State {
 
   return state;
 }
+
+const CHARACTERS: Character[] = [
+  {
+    id: '1',
+    name: 'Rick Sanchez',
+    image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
+  },
+  {
+    id: '2',
+    name: 'Morty Smith',
+    image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg',
+  },
+  {
+    id: '3',
+    name: 'Summer Smith',
+    image: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg',
+  },
+  {
+    id: '4',
+    name: 'Beth Smith',
+    image: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg',
+  },
+  {
+    id: '5',
+    name: 'Jerry Smith',
+    image: 'https://rickandmortyapi.com/api/character/avatar/5.jpeg',
+  },
+];
