@@ -8,7 +8,7 @@ import useRedux from "../redux/useRedux"
 
 export default function HomeScreen(props: HomeScreenStackProp) {
   const { state, dispatch } = useRedux();
-  const list = useRef<FlatList<Character>>();
+  const list = useRef<FlatList<Character>>(null);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_CHARACTERS' })
