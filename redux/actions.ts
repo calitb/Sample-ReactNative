@@ -1,4 +1,4 @@
-import { Character } from './store';
+import { Character } from './reducer';
 
 interface SetCharacter {
   type: 'SET_CHARACTER';

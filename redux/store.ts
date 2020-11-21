@@ -1,17 +1,5 @@
-export interface Character {
-  id: string;
-  name: string;
-  image: string;
-}
+import { createStore } from 'redux';
+import reducer from './reducer';
+const store = createStore(reducer);
 
-export interface State {
-  characters: Character[];
-  character?: Character;
-}
-
-const initialState: State = {
-  characters: [],
-  character: undefined,
-};
-
-export default initialState;
+export default store;

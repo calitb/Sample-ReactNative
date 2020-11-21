@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { DetailScreenStackProp } from "../types"
 import React from 'react';
-import useRedux from "../redux/useRedux"
+import { useSelector } from '../redux'
 
 const styles = StyleSheet.create({
   container: {
@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
 });
 
 export default function DetailScreen(props: DetailScreenStackProp) {
-  const { state } = useRedux();
+  const character = useSelector(state => state.character)
 
   return (
     <View style={styles.container} >
-      <Text>El valor es {JSON.stringify(state.character)}</Text>
+      <Text>El valor es {JSON.stringify(character)}</Text>
     </View>
   )
 }

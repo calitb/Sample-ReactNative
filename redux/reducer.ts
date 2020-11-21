@@ -1,8 +1,22 @@
-import { Character, State } from './store';
-
 import Action from './actions';
 
-export default function reducer(state: State, action: Action): State {
+export interface Character {
+  id: string;
+  name: string;
+  image: string;
+}
+
+export interface State {
+  characters: Character[];
+  character?: Character;
+}
+
+const initialState: State = {
+  characters: [],
+  character: undefined,
+};
+
+export default function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
     case 'SET_CHARACTER': {
       const newState = { ...state };
