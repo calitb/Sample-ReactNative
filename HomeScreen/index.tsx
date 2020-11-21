@@ -1,40 +1,38 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, FlatList, StyleSheet, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
 
+import { Character } from "../redux/store"
+import CharacterListItem from "../components/CharacterListItem"
 import { HomeScreenStackProp } from "../types";
-import React from 'react';
 import useRedux from "../redux/useRedux"
 
 export default function HomeScreen(props: HomeScreenStackProp) {
   const { state, dispatch } = useRedux();
+  const list = useRef<FlatList<Character>>();
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_CHARACTERS' })
+  }, [])
+
+  function onPress(character: Character) {
+    dispatch({ type: 'SET_CHARACTER', character })
+    props.navigation.navigate("Detail")
+  }
 
   return (
     <View style={[styles.container]} >
-      <Text>Numero de personajes: {state.characters.length}
-        {JSON.stringify(state.characters)}
-      </Text>
       <Button onPress={() => {
-        dispatch({ type: 'FETCH_CHARACTERS' })
-      }} title="Contar" />
-      <Button onPress={() => {
-        props.navigation.navigate("Detail", { contador: 0 }); // nombre de la ruta, y los parametros
-      }} title="Abrir detalle" />
+        list.current?.scrollToEnd()
+      }} title="Scrollear al final" />
 
-      <MyView>
-        <Text>Hello</Text>
-      </MyView>
-
-    </View>
-  )
-}
-
-interface MyViewProps {
-  children: React.ReactNode;
-}
-
-function MyView(props: MyViewProps) {
-  return (
-    <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: 'lightgray', width: 160, height: 160, borderRadius: 80 }}>
-      {props.children}
+      <FlatList<Character>
+        ref={list}
+        style={[styles.scroll]}
+        data={state.characters}
+        renderItem={({ item }) => <CharacterListItem character={item} onPress={onPress} />}
+        keyExtractor={(item, index) => item.id}
+      >
+      </FlatList>
     </View>
   )
 }
@@ -42,7 +40,10 @@ function MyView(props: MyViewProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  scroll: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   }
 });

@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { DetailScreenStackProp } from "../types"
 import React from 'react';
+import useRedux from "../redux/useRedux"
 
 const styles = StyleSheet.create({
   container: {
@@ -12,10 +13,11 @@ const styles = StyleSheet.create({
 });
 
 export default function DetailScreen(props: DetailScreenStackProp) {
-  const { contador } = props.route.params;
+  const { state } = useRedux();
+
   return (
     <View style={styles.container} >
-      <Text>El valor es {contador}</Text>
+      <Text>El valor es {JSON.stringify(state.character)}</Text>
     </View>
   )
 }
