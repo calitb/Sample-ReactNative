@@ -2,10 +2,8 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 // se define que parametros recibe cada ruta
 type RootStackParamList = {
-  Home: {};
-  Detail: {
-    contador: number;
-  };
+  Home: undefined;
+  Detail: undefined;
 };
 
 export type HomeScreenStackProp = StackScreenProps<RootStackParamList, 'Home'>;
