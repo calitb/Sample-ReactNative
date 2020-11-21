@@ -26,6 +26,7 @@ export default function HomeScreen(props: HomeScreenStackProp) {
       }} title="Scrollear al final" />
 
       <FlatList<Character>
+        numColumns={3}
         ref={list}
         style={[styles.scroll]}
         data={state.characters}
@@ -43,7 +44,5 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
   }
 });

@@ -12,8 +12,10 @@ export default function CharacterListItem({ onPress, character }: Prop) {
   return (
     <TouchableOpacity onPress={() => { onPress(character) }} activeOpacity={0.6} >
       <View style={styles.container} >
-        <Text>{character.name}</Text>
-        <Image source={{ uri: character.image }} style={styles.image} />
+        <View style={styles.content} >
+          <Image source={{ uri: character.image }} style={styles.image} />
+          <Text style={styles.text}>{character.name}</Text>
+        </View>
       </View>
     </TouchableOpacity>
   )
@@ -22,16 +24,22 @@ export default function CharacterListItem({ onPress, character }: Prop) {
 const styles = StyleSheet.create(
   {
     container: {
-      width: Dimensions.get('window').width - 10,
-      height: 100,
-      marginHorizontal: 5,
-      marginVertical: 5,
-      backgroundColor: 'gray',
+      flex: 1,
+      width: Dimensions.get('screen').width / 3,
+      paddingHorizontal: 5,
+      paddingVertical: 5
+    },
+    content: {
+      flex: 1,
+      borderColor: 'black',
+      borderWidth: 1,
     },
     image: {
-      width: 80,
-      height: 80,
-      borderRadius: 40
+      width: '100%',
+      aspectRatio: 1,
+    },
+    text: {
+      textAlign: 'center'
     }
   }
 )
