@@ -11,7 +11,7 @@ export interface State {
   character?: Character;
 }
 
-const initialState: State = {
+export const initialState: State = {
   characters: [],
   character: undefined,
 };
