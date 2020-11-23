@@ -12,14 +12,14 @@ pipeline {
         stage('Install Dependencies') {
           steps {
             script {
-              npm ci
+              sh 'npm ci'
             }
           }
         }
         stage('Test') {
           steps {
             script {
-              npm run test-ci
+              sh 'npm run test-ci'
             }
           }
         }
