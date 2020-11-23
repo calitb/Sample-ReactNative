@@ -7,7 +7,7 @@ describe("SET_CHARACTER", () => {
 
     expect(newState).toStrictEqual({
       ...initialState,
-      character: { id: "1", name: "Rick", image: "image.png2" }
+      character: { id: "1", name: "Rick", image: "image.png" }
     })
   })
 })
