@@ -12,16 +12,21 @@ pipeline {
         stage('Install Dependencies') {
           steps {
             script {
-              sh 'npm i'
+              sh 'npm ci'
             }
           }
         }
         stage('Test') {
           steps {
             script {
-              sh 'npm test'
+              sh 'npm run test-ci'
             }
           }
         }
+    }
+    post {
+      always {
+        junit 'junit.xml'
+      }
     }
 }
