@@ -1,17 +1,8 @@
-export interface Character {
-  id: string;
-  name: string;
-  image: string;
-}
+import { applyMiddleware, createStore } from 'redux';
 
-export interface State {
-  characters: Character[];
-  character?: Character;
-}
+import reducer from './reducer';
+import thunk from 'redux-thunk';
 
-const initialState: State = {
-  characters: [],
-  character: undefined,
-};
+const store = createStore(reducer, applyMiddleware(thunk));
 
-export default initialState;
+export default store;

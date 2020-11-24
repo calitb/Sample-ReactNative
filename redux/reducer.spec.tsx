@@ -1,4 +1,4 @@
-import initialState from "./store"
+import { initialState } from "./reducer"
 import reducer from "./reducer";
 
 describe("SET_CHARACTER", () => {

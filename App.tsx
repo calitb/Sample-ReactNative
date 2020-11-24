@@ -4,15 +4,16 @@ import DetailScreen from "./DetailScreen"
 import HomeScreen from "./HomeScreen"
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { ReduxProvider } from "./redux/useRedux";
+import { Provider as ReduxProvider } from 'react-redux'
 import { StatusBar } from 'expo-status-bar';
 import { createStackNavigator } from '@react-navigation/stack';
+import store from './redux/store'
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <ReduxProvider>
+    <ReduxProvider store={store}>
       <NavigationContainer>
         <StatusBar style="dark" />
         <Stack.Navigator initialRouteName="Home">
