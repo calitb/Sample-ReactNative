@@ -3,6 +3,10 @@ import { Character, State } from './store';
 import Action from './actions';
 
 export default function reducer(state: State, action: Action): State {
+  if (typeof action === 'function') {
+    return state;
+  }
+
   switch (action.type) {
     case 'SET_CHARACTER': {
       const newState = { ...state };
@@ -13,12 +17,6 @@ export default function reducer(state: State, action: Action): State {
     case 'SET_CHARACTERS': {
       const newState = { ...state };
       newState.characters = action.characters;
-
-      return newState;
-    }
-    case 'FETCH_CHARACTERS': {
-      const newState = { ...state };
-      newState.characters = CHARACTERS;
 
       return newState;
     }
