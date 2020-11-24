@@ -1,6 +1,6 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
-import { Character } from "../../redux/store"
+import { Character } from "../../redux/reducer"
 import React from "react";
 
 interface Prop {
