@@ -6,14 +6,28 @@ export interface Character {
   image: string;
 }
 
+interface Pagination {
+  actual: number;
+  anterior?: number;
+  siguiente?: number;
+  total: number;
+}
+
 export interface State {
   characters: Character[];
   character?: Character;
+  pagination: Pagination;
 }
 
 export const initialState: State = {
   characters: [],
   character: undefined,
+  pagination: {
+    actual: 1,
+    total: 0,
+    anterior: undefined,
+    siguiente: undefined,
+  },
 };
 
 export default function reducer(state: State = initialState, action: Action): State {
