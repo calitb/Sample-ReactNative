@@ -2,6 +2,7 @@ import { Character, State } from './reducer';
 
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import { fetchCharacters } from '../api';
 
 interface SetCharacter {
   type: 'SET_CHARACTER';
@@ -42,14 +43,12 @@ export function go(page: number): ThunkAction<any, any, any, Actions> {
   };
 }
 
-export function fetchCharacters(): ThunkAction<any, any, any, Actions> {
+export function loadCharacters(): ThunkAction<any, any, any, Actions> {
   return async (dispatch: Dispatch<Actions>, getState: () => State) => {
-    const response = await fetch('https://rickandmortyapi.com/api/character');
-    const body = await response.json();
-    const { results, info } = body;
-    const characters = results.map(characterMapper);
-
-    dispatch({ type: 'SET_CHARACTERS', characters });
+    const characters = await fetchCharacters();
+    if (characters) {
+      dispatch({ type: 'SET_CHARACTERS', characters });
+    }
   };
 }
 

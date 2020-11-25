@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from '../redux/useRedux'
 import { Character } from "../redux/reducer"
 import CharacterListItem from "../components/CharacterListItem"
 import { HomeScreenStackProp } from "../types";
-import { fetchCharacters } from "../redux/actions"
+import { loadCharacters } from "../redux/actions"
 
 export default function HomeScreen(props: HomeScreenStackProp) {
   const characters = useSelector(state => state.characters)
@@ -14,7 +14,7 @@ export default function HomeScreen(props: HomeScreenStackProp) {
   const list = useRef<FlatList<Character>>(null);
 
   useEffect(() => {
-    dispatch(fetchCharacters())
+    dispatch(loadCharacters())
   }, [])
 
   function onPress(character: Character) {
