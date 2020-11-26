@@ -1,16 +1,20 @@
 import Action from './actions';
 
+export interface APIInfo {
+  count: number;
+  next?: number;
+  pages: number;
+  prev?: number;
+}
+
 export interface Character {
   id: string;
   name: string;
   image: string;
 }
 
-interface Pagination {
-  actual: number;
-  anterior?: number;
-  siguiente?: number;
-  total: number;
+interface Pagination extends APIInfo {
+  page: number;
 }
 
 export interface State {
@@ -23,10 +27,11 @@ export const initialState: State = {
   characters: [],
   character: undefined,
   pagination: {
-    actual: 1,
-    total: 0,
-    anterior: undefined,
-    siguiente: undefined,
+    page: 1,
+    count: 0,
+    pages: 0,
+    prev: undefined,
+    next: undefined,
   },
 };
 
@@ -41,6 +46,12 @@ export default function reducer(state: State = initialState, action: Action): St
     case 'SET_CHARACTERS': {
       const newState = { ...state };
       newState.characters = action.characters;
+
+      return newState;
+    }
+    case 'SET_PAGES_INFO': {
+      const newState = { ...state };
+      newState.pagination = { ...action.info, page: action.page };
 
       return newState;
     }

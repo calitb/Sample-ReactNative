@@ -1,4 +1,4 @@
-import { Character, State } from './reducer';
+import { APIInfo, Character, State } from './reducer';
 
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
@@ -14,12 +14,10 @@ interface SetCharacters {
   characters: Character[];
 }
 
-interface GoBack {
-  type: 'GO_BACK';
-}
-
-interface GoForward {
-  type: 'GO_FORWARD';
+interface SetPagesInfo {
+  type: 'SET_PAGES_INFO';
+  info: APIInfo;
+  page: number;
 }
 
 interface GoLast {
@@ -30,35 +28,57 @@ interface GoFirst {
   type: 'GO_FIRST';
 }
 
-export function go(page: number): ThunkAction<any, any, any, Actions> {
-  return async (dispatch: Dispatch<Actions>, getState: () => State) => {
-    const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
-    const body = await response.json();
-    const { results, info } = body;
-    const characters = results.map(characterMapper);
+// export function go(page: number): ThunkAction<any, any, any, Actions> {
+//   return async (dispatch: Dispatch<Actions>, getState: () => State) => {
+//     const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`);
+//     const body = await response.json();
+//     const { results, info } = body;
+//     const characters = results.map(characterMapper);
 
-    console.log({ info });
+//     console.log({ info });
 
-    dispatch({ type: 'SET_CHARACTERS', characters });
-  };
-}
+//     dispatch({ type: 'SET_CHARACTERS', characters });
+//   };
+// }
 
 export function loadCharacters(): ThunkAction<any, any, any, Actions> {
   return async (dispatch: Dispatch<Actions>, getState: () => State) => {
-    const characters = await fetchCharacters();
-    if (characters) {
+    const state = getState();
+
+    const results = await fetchCharacters(state.pagination.page);
+    if (results) {
+      const { characters, apiInfo } = results;
       dispatch({ type: 'SET_CHARACTERS', characters });
+      dispatch({ type: 'SET_PAGES_INFO', info: apiInfo, page: state.pagination.page });
     }
   };
 }
 
-type Actions = SetCharacter | SetCharacters;
-export default Actions;
+export function goBack(): ThunkAction<any, any, any, Actions> {
+  return async (dispatch: Dispatch<Actions>, getState: () => State) => {
+    const state = getState();
 
-function characterMapper({ id, name, image }: Character): Character {
-  return {
-    id,
-    name,
-    image,
+    const results = await fetchCharacters(state.pagination.page - 1);
+    if (results) {
+      const { characters, apiInfo } = results;
+      dispatch({ type: 'SET_CHARACTERS', characters });
+      dispatch({ type: 'SET_PAGES_INFO', info: apiInfo, page: state.pagination.page - 1 });
+    }
   };
 }
+
+export function goForward(): ThunkAction<any, any, any, Actions> {
+  return async (dispatch: Dispatch<Actions>, getState: () => State) => {
+    const state = getState();
+
+    const results = await fetchCharacters(state.pagination.page + 1);
+    if (results) {
+      const { characters, apiInfo } = results;
+      dispatch({ type: 'SET_CHARACTERS', characters });
+      dispatch({ type: 'SET_PAGES_INFO', info: apiInfo, page: state.pagination.page + 1 });
+    }
+  };
+}
+
+type Actions = SetCharacter | SetCharacters | SetPagesInfo;
+export default Actions;

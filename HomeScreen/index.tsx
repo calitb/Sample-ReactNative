@@ -1,14 +1,15 @@
-import { Button, FlatList, StyleSheet, View } from 'react-native';
+import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useRef } from 'react';
+import { goBack, goForward, loadCharacters } from "../redux/actions"
 import { useDispatch, useSelector } from '../redux/useRedux'
 
 import { Character } from "../redux/reducer"
 import CharacterListItem from "../components/CharacterListItem"
 import { HomeScreenStackProp } from "../types";
-import { loadCharacters } from "../redux/actions"
 
 export default function HomeScreen(props: HomeScreenStackProp) {
   const characters = useSelector(state => state.characters)
+  const pagination = useSelector(state => state.pagination)
   const dispatch = useDispatch()
 
   const list = useRef<FlatList<Character>>(null);
@@ -24,6 +25,17 @@ export default function HomeScreen(props: HomeScreenStackProp) {
 
   return (
     <View style={[styles.container]} >
+      <Text>{JSON.stringify(pagination)}</Text>
+
+      <Button disabled={!pagination.prev} onPress={() => {
+        dispatch(goBack())
+      }} title="Anterior" />
+
+
+      <Button disabled={!pagination.next} onPress={() => {
+        dispatch(goForward())
+      }} title="Siguiente" />
+
       <Button onPress={() => {
         list.current?.scrollToEnd()
       }} title="Scrollear al final" />
