@@ -20,43 +20,47 @@ interface SetPagesInfo {
   page: number;
 }
 
-interface GoLast {
-  type: 'GO_LAST';
+interface SetLoading {
+  type: 'SET_LOADING';
+  loading: boolean;
 }
 
-interface GoFirst {
-  type: 'GO_FIRST';
-}
+async function go(state: State, page: number, dispatch: Dispatch<Actions>) {
+  if (!state.loading) {
+    dispatch({ type: 'SET_LOADING', loading: true });
+    dispatch({ type: 'SET_CHARACTERS', characters: [] });
 
-async function go(page: number, dispatch: Dispatch<Actions>) {
-  const results = await fetchCharacters(page);
-  if (results) {
-    const { characters, apiInfo } = results;
-    dispatch({ type: 'SET_CHARACTERS', characters });
-    dispatch({ type: 'SET_PAGES_INFO', info: apiInfo, page });
+    const results = await fetchCharacters(page);
+    if (results) {
+      const { characters, apiInfo } = results;
+      dispatch({ type: 'SET_CHARACTERS', characters });
+      dispatch({ type: 'SET_PAGES_INFO', info: apiInfo, page });
+    }
+
+    dispatch({ type: 'SET_LOADING', loading: false });
   }
 }
 
 export function loadCharacters(): ThunkAction<any, any, any, Actions> {
   return async (dispatch: Dispatch<Actions>, getState: () => State) => {
     const state = getState();
-    await go(state.pagination.page, dispatch);
+    await go(state, state.pagination.page, dispatch);
   };
 }
 
 export function goBack(): ThunkAction<any, any, any, Actions> {
   return async (dispatch: Dispatch<Actions>, getState: () => State) => {
     const state = getState();
-    await go(state.pagination.page - 1, dispatch);
+    await go(state, state.pagination.page - 1, dispatch);
   };
 }
 
 export function goForward(): ThunkAction<any, any, any, Actions> {
   return async (dispatch: Dispatch<Actions>, getState: () => State) => {
     const state = getState();
-    await go(state.pagination.page + 1, dispatch);
+    await go(state, state.pagination.page + 1, dispatch);
   };
 }
 
-type Actions = SetCharacter | SetCharacters | SetPagesInfo;
+type Actions = SetCharacter | SetCharacters | SetPagesInfo | SetLoading;
 export default Actions;

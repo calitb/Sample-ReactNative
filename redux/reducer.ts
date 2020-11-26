@@ -21,6 +21,7 @@ export interface State {
   characters: Character[];
   character?: Character;
   pagination: Pagination;
+  loading: boolean;
 }
 
 export const initialState: State = {
@@ -33,6 +34,7 @@ export const initialState: State = {
     prev: undefined,
     next: undefined,
   },
+  loading: false,
 };
 
 export default function reducer(state: State = initialState, action: Action): State {
@@ -52,6 +54,12 @@ export default function reducer(state: State = initialState, action: Action): St
     case 'SET_PAGES_INFO': {
       const newState = { ...state };
       newState.pagination = { ...action.info, page: action.page };
+
+      return newState;
+    }
+    case 'SET_LOADING': {
+      const newState = { ...state };
+      newState.loading = action.loading;
 
       return newState;
     }
