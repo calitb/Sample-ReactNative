@@ -1,4 +1,4 @@
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useRef } from 'react';
 import { goBack, goForward, loadCharacters } from "../redux/actions"
 import { useDispatch, useSelector } from '../redux/useRedux'
@@ -42,6 +42,7 @@ export default function HomeScreen(props: HomeScreenStackProp) {
 
       <FlatList<Character>
         numColumns={3}
+        ListEmptyComponent={<NoData />}
         ref={list}
         style={[styles.scroll]}
         data={characters}
@@ -49,6 +50,14 @@ export default function HomeScreen(props: HomeScreenStackProp) {
         keyExtractor={(item, index) => item.id}
       >
       </FlatList>
+    </View>
+  )
+}
+
+function NoData() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityIndicator size="large" />
     </View>
   )
 }
