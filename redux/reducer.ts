@@ -11,6 +11,8 @@ export interface Character {
   id: string;
   name: string;
   image: string;
+  species: string;
+  origin: string[];
 }
 
 interface Pagination extends APIInfo {

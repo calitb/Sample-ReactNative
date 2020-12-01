@@ -7,21 +7,22 @@ export async function fetchCharacters(page: number): Promise<{ characters: Chara
     const { results, info } = body;
     const characters = results.map(characterMapper);
 
-    console.log({ info });
-
     const apiInfo = infoMapper(info.count, info.pages, info.prev, info.next);
 
     return { characters, apiInfo };
   } catch (ex) {
+    console.log({ ex });
     return undefined;
   }
 }
 
-function characterMapper({ id, name, image }: Character): Character {
+function characterMapper({ id, name, image, species, origin }: any): Character {
   return {
     id,
     name,
     image,
+    species,
+    origin: origin.name,
   };
 }
 

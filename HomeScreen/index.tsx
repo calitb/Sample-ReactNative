@@ -59,7 +59,7 @@ export default function HomeScreen(props: HomeScreenStackProp) {
 
 function NoData() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
       <ActivityIndicator size="large" />
     </View>
   )
