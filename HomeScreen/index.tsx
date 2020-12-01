@@ -1,4 +1,4 @@
-import { ActivityIndicator, Button, FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Button, FlatList, Platform, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useRef } from 'react';
 import { goBack, goForward, loadCharacters } from "../redux/actions"
 import { useDispatch, useSelector } from '../redux/useRedux'
@@ -25,20 +25,16 @@ export default function HomeScreen(props: HomeScreenStackProp) {
 
   return (
     <View style={[styles.container]} >
-      <Text>{JSON.stringify(pagination)}</Text>
+      <View style={styles.buttons}>
+        <Button disabled={!pagination.prev} onPress={() => {
+          dispatch(goBack())
+        }} title="Anterior" />
 
-      <Button disabled={!pagination.prev} onPress={() => {
-        dispatch(goBack())
-      }} title="Anterior" />
 
-
-      <Button disabled={!pagination.next} onPress={() => {
-        dispatch(goForward())
-      }} title="Siguiente" />
-
-      <Button onPress={() => {
-        list.current?.scrollToEnd()
-      }} title="Scrollear al final" />
+        <Button disabled={!pagination.next} onPress={() => {
+          dispatch(goForward())
+        }} title="Siguiente" />
+      </View>
 
       <FlatList<Character>
         numColumns={3}
@@ -48,8 +44,15 @@ export default function HomeScreen(props: HomeScreenStackProp) {
         data={characters}
         renderItem={({ item }) => <CharacterListItem character={item} onPress={onPress} />}
         keyExtractor={(item, index) => item.id}
+        ListFooterComponent={
+          Platform.OS === 'android' ? <Button onPress={() => {
+            list.current?.scrollToOffset({ offset: 0, animated: true })
+          }} title="Scrollear al inicio" /> : null
+        }
       >
       </FlatList>
+
+
     </View>
   )
 }
@@ -68,5 +71,10 @@ const styles = StyleSheet.create({
   },
   scroll: {
     flex: 1,
+  },
+  buttons: {
+    paddingHorizontal: 10,
+    justifyContent: 'space-between',
+    flexDirection: 'row'
   }
 });
