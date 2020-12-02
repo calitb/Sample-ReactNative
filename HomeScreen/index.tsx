@@ -73,7 +73,6 @@ export default function HomeScreen(props: HomeScreenStackProp) {
       >
       </FlatList>
 
-
     </SafeAreaView>
   )
 }
