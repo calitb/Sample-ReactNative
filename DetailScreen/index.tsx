@@ -1,7 +1,7 @@
 import { Image, ScrollView, StyleSheet, Text } from 'react-native';
+import React, { useLayoutEffect } from 'react';
 
 import { DetailScreenStackProp } from "../types"
-import React from 'react';
 import { useSelector } from '../redux/useRedux'
 
 export default function DetailScreen(props: DetailScreenStackProp) {
@@ -11,10 +11,15 @@ export default function DetailScreen(props: DetailScreenStackProp) {
     return null;
   }
 
+  useLayoutEffect(() => {
+    props.navigation.setOptions({
+      title: character.name,
+    });
+  }, [props.navigation]);
+
   return (
     <ScrollView style={styles.container} >
       <Image source={{ uri: character.image }} style={styles.image} />
-      <Text style={styles.text}>{character.name}</Text>
 
       <Text style={styles.subtext}>{character.species}</Text>
       <Text style={styles.subtext}>{character.origin}</Text>
