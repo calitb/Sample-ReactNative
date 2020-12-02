@@ -1,6 +1,5 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text } from 'react-native';
 
-import CharacterListItem from "../components/CharacterListItem"
 import { DetailScreenStackProp } from "../types"
 import React from 'react';
 import { useSelector } from '../redux/useRedux'
