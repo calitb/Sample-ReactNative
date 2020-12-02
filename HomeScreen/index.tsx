@@ -36,6 +36,7 @@ export default function HomeScreen(props: HomeScreenStackProp) {
       <View style={styles.buttons}>
         <Button disabled={!pagination.prev} onPress={() => {
           dispatch(goBack())
+          list.current?.scrollToOffset({ offset: 0, animated: false })
         }} title="Anterior" />
 
         <Text>
@@ -44,6 +45,7 @@ export default function HomeScreen(props: HomeScreenStackProp) {
 
         <Button disabled={!pagination.next} onPress={() => {
           dispatch(goForward())
+          list.current?.scrollToOffset({ offset: 0, animated: false })
         }} title="Siguiente" />
       </View>
 
@@ -52,7 +54,6 @@ export default function HomeScreen(props: HomeScreenStackProp) {
           placeholder="Character name"
           clearButtonMode="while-editing"
           value={search}
-          style={styles.inputfield}
           onChangeText={onChangeSearch}
         />
       </View>
@@ -60,8 +61,8 @@ export default function HomeScreen(props: HomeScreenStackProp) {
       <FlatList<Character>
         numColumns={3}
         ListEmptyComponent={loading ? <NoData /> : null}
+        contentContainerStyle={loading ? { flex: 1, justifyContent: 'center' } : {}}
         ref={list}
-        style={[styles.scroll]}
         data={filteredCharacteres}
         renderItem={({ item }) => <CharacterListItem character={item} onPress={onPress} />}
         keyExtractor={(item, index) => item.id}
@@ -98,9 +99,6 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     height: 44,
     justifyContent: 'center'
-  },
-  inputfield: {
-
   },
   buttons: {
     paddingHorizontal: 10,
