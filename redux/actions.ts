@@ -1,7 +1,8 @@
-import { Character, State } from './reducer';
+import { APIInfo, Character, State } from './reducer';
 
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import { fetchCharacters } from '../api';
 
 interface SetCharacter {
   type: 'SET_CHARACTER';
@@ -13,24 +14,53 @@ interface SetCharacters {
   characters: Character[];
 }
 
-export function fetchCharacters(): ThunkAction<any, any, any, Actions> {
+interface SetPagesInfo {
+  type: 'SET_PAGES_INFO';
+  info: APIInfo;
+  page: number;
+}
+
+interface SetLoading {
+  type: 'SET_LOADING';
+  loading: boolean;
+}
+
+async function go(state: State, page: number, dispatch: Dispatch<Actions>) {
+  if (!state.loading) {
+    dispatch({ type: 'SET_LOADING', loading: true });
+    dispatch({ type: 'SET_CHARACTERS', characters: [] });
+
+    const results = await fetchCharacters(page);
+    if (results) {
+      const { characters, apiInfo } = results;
+      dispatch({ type: 'SET_CHARACTERS', characters });
+      dispatch({ type: 'SET_PAGES_INFO', info: apiInfo, page });
+    }
+
+    dispatch({ type: 'SET_LOADING', loading: false });
+  }
+}
+
+export function loadCharacters(): ThunkAction<any, any, any, Actions> {
   return async (dispatch: Dispatch<Actions>, getState: () => State) => {
-    const response = await fetch('https://rickandmortyapi.com/api/character');
-    const body = await response.json();
-    const { results, info } = body;
-    const characters = results.map(characterMapper);
-
-    dispatch({ type: 'SET_CHARACTERS', characters });
+    const state = getState();
+    await go(state, state.pagination.page, dispatch);
   };
 }
 
-type Actions = SetCharacter | SetCharacters;
+export function goBack(): ThunkAction<any, any, any, Actions> {
+  return async (dispatch: Dispatch<Actions>, getState: () => State) => {
+    const state = getState();
+    await go(state, state.pagination.page - 1, dispatch);
+  };
+}
+
+export function goForward(): ThunkAction<any, any, any, Actions> {
+  return async (dispatch: Dispatch<Actions>, getState: () => State) => {
+    const state = getState();
+    await go(state, state.pagination.page + 1, dispatch);
+  };
+}
+
+type Actions = SetCharacter | SetCharacters | SetPagesInfo | SetLoading;
 export default Actions;
-
-function characterMapper({ id, name, image }: Character): Character {
-  return {
-    id,
-    name,
-    image,
-  };
-}

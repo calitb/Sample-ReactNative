@@ -17,8 +17,8 @@ export default function App() {
       <NavigationContainer>
         <StatusBar style="dark" />
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Detail" component={DetailScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Rick and Morty' }} />
+          <Stack.Screen name="Detail" component={DetailScreen} options={{ headerBackTitle: 'Back' }} />
         </Stack.Navigator>
       </NavigationContainer>
     </ReduxProvider>
