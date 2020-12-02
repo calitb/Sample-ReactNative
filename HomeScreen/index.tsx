@@ -1,4 +1,4 @@
-import { ActivityIndicator, Button, FlatList, Platform, SafeAreaView, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, Button, FlatList, Platform, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { goBack, goForward, loadCharacters } from "../redux/actions"
 import { useDispatch, useSelector } from '../redux/useRedux'
@@ -37,6 +37,10 @@ export default function HomeScreen(props: HomeScreenStackProp) {
         <Button disabled={!pagination.prev} onPress={() => {
           dispatch(goBack())
         }} title="Anterior" />
+
+        <Text>
+          {`${pagination.page} de ${pagination.pages}`}
+        </Text>
 
         <Button disabled={!pagination.next} onPress={() => {
           dispatch(goForward())
@@ -102,6 +106,7 @@ const styles = StyleSheet.create({
   buttons: {
     paddingHorizontal: 10,
     justifyContent: 'space-between',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 });
