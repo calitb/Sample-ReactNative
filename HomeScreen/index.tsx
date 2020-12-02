@@ -45,6 +45,8 @@ export default function HomeScreen(props: HomeScreenStackProp) {
 
       <View style={styles.searchbar}>
         <TextInput
+          placeholder="Character name"
+          clearButtonMode="while-editing"
           value={search}
           style={styles.inputfield}
           onChangeText={onChangeSearch}
