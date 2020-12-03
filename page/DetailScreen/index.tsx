@@ -1,8 +1,8 @@
 import { Image, ScrollView, StyleSheet, Text } from 'react-native';
 import React, { useLayoutEffect } from 'react';
 
-import { DetailScreenStackProp } from "../types"
-import { useSelector } from '../redux/useRedux'
+import { DetailScreenStackProp } from "../../types"
+import { useSelector } from '../../redux/useRedux'
 
 export default function DetailScreen(props: DetailScreenStackProp) {
   const character = useSelector(state => state.character)

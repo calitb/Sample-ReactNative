@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 
-import DetailScreen from "./DetailScreen"
-import HomeScreen from "./HomeScreen"
+import DetailScreen from "./page/DetailScreen"
+import HomeScreen from "./page/HomeScreen"
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux'
