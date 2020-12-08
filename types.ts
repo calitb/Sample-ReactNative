@@ -1,11 +1,16 @@
 import { StackScreenProps } from '@react-navigation/stack';
 
 // se define que parametros recibe cada ruta
-type RootStackParamList = {
+export type RootStackParamList = {
   Home: undefined;
   Detail: undefined;
 };
 
-export type HomeScreenStackProp = StackScreenProps<RootStackParamList, 'Home'>;
+export enum Routes {
+  Home = 'Home',
+  Detail = 'Detail',
+}
 
-export type DetailScreenStackProp = StackScreenProps<RootStackParamList, 'Detail'>;
+export type HomeScreenStackProp = StackScreenProps<RootStackParamList, Routes.Home>;
+
+export type DetailScreenStackProp = StackScreenProps<RootStackParamList, Routes.Detail>;

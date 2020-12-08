@@ -4,9 +4,12 @@ import { Image, ScrollView, Text } from "react-native"
 
 import DetailScreen from "./index"
 import React from "react"
+import { Route } from '@react-navigation/native'
+import { Routes } from '../../types'
 import { State } from "../../redux/reducer"
 import TestRenderer from "react-test-renderer"
 import { characterRick } from "../../fixtures/character"
+import mockNavigationGeneric from "../../fixtures/navigation"
 import { stateFixture } from "../../fixtures/state"
 
 describe("DetailScreen", () => {
@@ -20,11 +23,13 @@ describe("DetailScreen", () => {
       return miSelector(state)
     })
 
+    const stackMock = mockNavigationGeneric(Routes.Detail);;
+    const navigation = stackMock.navigation;
+    const route = stackMock.route as Route<Routes.Detail, undefined>;
+    navigation.setOptions = jest.fn();
 
     const { root } = TestRenderer.create(
-      <DetailScreen navigation={{
-        setOptions: jest.fn()
-      }} />
+      <DetailScreen navigation={navigation} route={route} />
     )
 
     const scrollViews = root.findAllByType(ScrollView)
@@ -38,6 +43,10 @@ describe("DetailScreen", () => {
     expect(texts[0].props.children).toBe('Human')
     expect(texts[1].props.children).toBe('Earth')
 
+    expect(navigation.setOptions).toBeCalledWith({
+      title: 'Rick',
+    })
+
     spy.mockRestore();
   })
 
@@ -50,11 +59,12 @@ describe("DetailScreen", () => {
       return miSelector(state)
     })
 
+    const stackMock = mockNavigationGeneric(Routes.Detail);;
+    const navigation = stackMock.navigation;
+    const route = stackMock.route as Route<Routes.Detail, undefined>;
 
     const { root } = TestRenderer.create(
-      <DetailScreen navigation={{
-        setOptions: jest.fn()
-      }} />
+      <DetailScreen navigation={navigation} route={route} />
     )
 
     const scrollViews = root.findAllByType(ScrollView)
