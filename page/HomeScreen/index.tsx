@@ -60,7 +60,7 @@ export default function HomeScreen(props: HomeScreenStackProp) {
 
       <FlatList<Character>
         numColumns={3}
-        ListEmptyComponent={loading ? <NoData /> : null}
+        ListEmptyComponent={loading ? <LoadingView /> : null}
         contentContainerStyle={loading ? { flex: 1, justifyContent: 'center' } : {}}
         ref={list}
         data={filteredCharacteres}
@@ -78,7 +78,7 @@ export default function HomeScreen(props: HomeScreenStackProp) {
   )
 }
 
-function NoData() {
+export function LoadingView() {
   return (
     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
       <ActivityIndicator size="large" />

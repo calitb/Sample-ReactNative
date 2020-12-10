@@ -16,7 +16,7 @@ COMO USAR
         undefined son los parametros que recibe la ruta
 */
 
-interface ReturnValues {
+export interface ReturnValues {
   navigation: StackNavigationProp<RootStackParamList, Routes>;
   route: Route<Routes, undefined>;
 }
