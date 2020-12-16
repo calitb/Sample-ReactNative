@@ -18,7 +18,7 @@ export default function DetailScreen(props: DetailScreenStackProp) {
     });
   }, [props.navigation]);
 
-  const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />
+  const LeftContent = (props) => <Avatar.Icon {...props} icon="people-carry" />
 
   return (
     <ScrollView style={styles.container} >

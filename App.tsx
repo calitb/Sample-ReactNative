@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
 import DetailScreen from "./page/DetailScreen"
 import HomeScreen from "./page/HomeScreen"
 import { NavigationContainer } from '@react-navigation/native';
@@ -25,7 +26,10 @@ const theme = {
 export default function App() {
   return (
     <ReduxProvider store={store}>
-      <PaperProvider theme={theme} >
+      <PaperProvider theme={theme}
+        settings={{
+          icon: props => <AwesomeIcon {...props} />,
+        }}>
         <NavigationContainer>
           <StatusBar style="dark" />
           <Stack.Navigator initialRouteName="Home">
