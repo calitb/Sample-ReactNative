@@ -1,5 +1,6 @@
-import { Image, ScrollView, StyleSheet, Text } from 'react-native';
+import { Avatar, Card, Paragraph, Title } from 'react-native-paper';
 import React, { useLayoutEffect } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import { DetailScreenStackProp } from "../../types"
 import { useSelector } from '../../redux/useRedux'
@@ -17,24 +18,32 @@ export default function DetailScreen(props: DetailScreenStackProp) {
     });
   }, [props.navigation]);
 
+  const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />
+
   return (
     <ScrollView style={styles.container} >
-      <Image source={{ uri: character.image }} style={styles.image} />
-
-      <Text style={styles.subtext}>{character.species}</Text>
-      <Text style={styles.subtext}>{character.origin}</Text>
-
+      <Card>
+        <Card.Title title={character.name} left={LeftContent} />
+        <Card.Cover source={{ uri: character.image }} style={styles.image} />
+        <Card.Content>
+          <Title>Character Info</Title>
+          <Paragraph>Specie: {character.species}</Paragraph>
+          <Paragraph>Origin: {character.origin}</Paragraph>
+        </Card.Content>
+      </Card>
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 16
   },
   image: {
     width: '100%',
-    aspectRatio: 1,
+    height: 300
   },
   text: {
     fontSize: 24,

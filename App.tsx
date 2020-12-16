@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+
 import DetailScreen from "./page/DetailScreen"
 import HomeScreen from "./page/HomeScreen"
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,16 +13,27 @@ import store from './redux/store'
 
 const Stack = createStackNavigator();
 
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'teal',
+    accent: 'yellow',
+  },
+};
+
 export default function App() {
   return (
     <ReduxProvider store={store}>
-      <NavigationContainer>
-        <StatusBar style="dark" />
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Rick and Morty' }} />
-          <Stack.Screen name="Detail" component={DetailScreen} options={{ headerBackTitle: 'Back' }} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <PaperProvider theme={theme} >
+        <NavigationContainer>
+          <StatusBar style="dark" />
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Rick and Morty' }} />
+            <Stack.Screen name="Detail" component={DetailScreen} options={{ headerBackTitle: 'Back' }} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PaperProvider>
     </ReduxProvider>
   );
 }
