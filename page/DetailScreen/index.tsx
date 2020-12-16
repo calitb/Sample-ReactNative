@@ -3,6 +3,7 @@ import React, { useLayoutEffect } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
 import { DetailScreenStackProp } from "../../types"
+import STRINGS from "../../strings"
 import { useSelector } from '../../redux/useRedux'
 
 export default function DetailScreen(props: DetailScreenStackProp) {
@@ -26,9 +27,9 @@ export default function DetailScreen(props: DetailScreenStackProp) {
         <Card.Title title={character.name} left={LeftContent} />
         <Card.Cover source={{ uri: character.image }} style={styles.image} />
         <Card.Content>
-          <Title>Character Info</Title>
-          <Paragraph>Specie: {character.species}</Paragraph>
-          <Paragraph>Origin: {character.origin}</Paragraph>
+          <Title>{STRINGS.CHARACTER_INFO_LABEL}</Title>
+          <Paragraph>{STRINGS.SPECIES_LABEL}: {character.species}</Paragraph>
+          <Paragraph>{STRINGS.ORIGIN_LABEL}: {character.origin}</Paragraph>
         </Card.Content>
       </Card>
     </ScrollView>
