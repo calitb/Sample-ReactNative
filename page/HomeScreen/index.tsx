@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from '../../redux/useRedux'
 import { Character } from "../../redux/reducer"
 import CharacterListItem from "../../components/CharacterListItem"
 import { HomeScreenStackProp } from "../../types";
+import STRINGS from "../../strings"
 
 export default function HomeScreen(props: HomeScreenStackProp) {
   const [search, setSearch] = useState('');
@@ -37,21 +38,21 @@ export default function HomeScreen(props: HomeScreenStackProp) {
         <Button disabled={!pagination.prev} onPress={() => {
           dispatch(goBack())
           list.current?.scrollToOffset({ offset: 0, animated: false })
-        }} title="Anterior" />
+        }} title={STRINGS.PREV_BUTTON} />
 
         <Text>
-          {`${pagination.page} de ${pagination.pages}`}
+          {STRINGS.formatString(STRINGS.PAGE_NUMBER, pagination.page, pagination.pages)}
         </Text>
 
         <Button disabled={!pagination.next} onPress={() => {
           dispatch(goForward())
           list.current?.scrollToOffset({ offset: 0, animated: false })
-        }} title="Siguiente" />
+        }} title={STRINGS.NEXT_BUTTON} />
       </View>
 
       <View style={styles.searchbar}>
         <TextInput
-          placeholder="Character name"
+          placeholder={STRINGS.FILTER_PLACEHOLDER}
           clearButtonMode="while-editing"
           value={search}
           onChangeText={onChangeSearch}
@@ -69,7 +70,7 @@ export default function HomeScreen(props: HomeScreenStackProp) {
         ListFooterComponent={
           Platform.OS === 'android' ? <Button onPress={() => {
             list.current?.scrollToOffset({ offset: 0, animated: true })
-          }} title="Scrollear al inicio" /> : null
+          }} title={STRINGS.SCROLL_TO_TOP} /> : null
         }
       >
       </FlatList>

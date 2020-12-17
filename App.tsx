@@ -35,7 +35,7 @@ export default function App() {
           <StatusBar style="dark" />
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} options={{ title: STRINGS.formatString(STRINGS.TITLE, 'Rick', 'Morty') as string }} />
-            <Stack.Screen name="Detail" component={DetailScreen} options={{ headerBackTitle: 'Back' }} />
+            <Stack.Screen name="Detail" component={DetailScreen} options={{ headerBackTitle: STRINGS.BACK_BUTTON }} />
           </Stack.Navigator>
         </NavigationContainer>
       </PaperProvider>
