@@ -1,8 +1,8 @@
-import { useDispatch as redux_useDispatch, useSelector as redux_useSelector } from 'react-redux'
+import { useDispatch as redux_useDispatch, useSelector as redux_useSelector } from 'react-redux';
 
-import Actions from "./actions"
-import { Dispatch } from "redux"
-import { State } from "./reducer"
+import Actions from "./actions";
+import { Dispatch } from "redux";
+import { State } from "./reducer";
 import { ThunkDispatch } from 'redux-thunk';
 
 export function useDispatch(): ThunkDispatch<State, any, Actions> {

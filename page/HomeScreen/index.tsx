@@ -1,12 +1,12 @@
 import { ActivityIndicator, Button, FlatList, Platform, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
-import { goBack, goForward, loadCharacters } from "../../redux/actions"
-import { useDispatch, useSelector } from '../../redux/useRedux'
+import { goBack, goForward, loadCharacters } from "../../redux/actions";
+import { useDispatch, useSelector } from '../../redux/useRedux';
 
-import { Character } from "../../redux/reducer"
-import CharacterListItem from "../../components/CharacterListItem"
+import { Character } from "../../redux/reducer";
+import CharacterListItem from "../../components/CharacterListItem";
 import { HomeScreenStackProp } from "../../types";
-import STRINGS from "../../strings"
+import STRINGS from "../../strings";
 
 export default function HomeScreen(props: HomeScreenStackProp) {
   const [search, setSearch] = useState('');

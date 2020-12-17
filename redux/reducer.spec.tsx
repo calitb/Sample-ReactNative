@@ -1,7 +1,7 @@
-import Actions from "./actions"
-import { characterRick } from "../fixtures/character"
-import { initialState } from "./reducer"
-import reducer from "./reducer";
+import reducer, { initialState } from "./reducer";
+
+import Actions from "./actions";
+import { characterRick } from "../fixtures/character";
 
 describe("SET_CHARACTER", () => {
   it("should set the character", () => {

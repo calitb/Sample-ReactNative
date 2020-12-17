@@ -1,19 +1,19 @@
-import * as ReduxActions from '../../redux/actions'
-import * as ReduxHooks from '../../redux/useRedux'
+import * as ReduxActions from '../../redux/actions';
+import * as ReduxHooks from '../../redux/useRedux';
 
-import { ActivityIndicator, Button, FlatList, Platform, Text, TextInput } from 'react-native';
-import HomeScreen, { LoadingView } from "./index"
-import { RootStackParamList, Routes } from '../../types'
-import { characterMorty, characterRick } from "../../fixtures/character"
-import mockNavigationGeneric, { ReturnValues } from "../../fixtures/navigation"
+import { Button, FlatList, Platform, Text, TextInput } from 'react-native';
+import HomeScreen, { LoadingView } from "./index";
+import { RootStackParamList, Routes } from '../../types';
+import { characterMorty, characterRick } from "../../fixtures/character";
+import mockNavigationGeneric, { ReturnValues } from "../../fixtures/navigation";
 
 import CharacterListItem from '../../components/CharacterListItem';
-import React from "react"
-import { Route } from '@react-navigation/native'
+import React from "react";
+import { Route } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { State } from "../../redux/reducer"
-import TestRenderer from "react-test-renderer"
-import { stateFixture } from "../../fixtures/state"
+import { State } from "../../redux/reducer";
+import TestRenderer from "react-test-renderer";
+import { stateFixture } from "../../fixtures/state";
 
 // function mockComponent<P extends React.DOMAttributes<T>, T extends Element>(name: string): (props: React.ClassAttributes<T> & P) => React.DOMElement<P, T> {
 //   return (props: React.ClassAttributes<T> & P): React.DOMElement<P, T> => {

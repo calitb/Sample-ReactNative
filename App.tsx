@@ -3,15 +3,15 @@ import 'react-native-gesture-handler';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
-import DetailScreen from "./page/DetailScreen"
-import HomeScreen from "./page/HomeScreen"
+import DetailScreen from "./page/DetailScreen";
+import HomeScreen from "./page/HomeScreen";
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import { Provider as ReduxProvider } from 'react-redux'
-import STRINGS from "./strings"
+import { Provider as ReduxProvider } from 'react-redux';
+import STRINGS from "./strings";
 import { StatusBar } from 'expo-status-bar';
 import { createStackNavigator } from '@react-navigation/stack';
-import store from './redux/store'
+import store from './redux/store';
 
 const Stack = createStackNavigator();
 

@@ -2,9 +2,9 @@ import { Avatar, Card, Paragraph, Title } from 'react-native-paper';
 import React, { useLayoutEffect } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 
-import { DetailScreenStackProp } from "../../types"
-import STRINGS from "../../strings"
-import { useSelector } from '../../redux/useRedux'
+import { DetailScreenStackProp } from "../../types";
+import STRINGS from "../../strings";
+import { useSelector } from '../../redux/useRedux';
 
 export default function DetailScreen(props: DetailScreenStackProp) {
   const character = useSelector(state => state.character)
