@@ -59,7 +59,7 @@ describe("DetailScreen", () => {
 
     const texts = root.findAllByType(Text);
     expect(texts).toHaveLength(3);
-    expect(texts[1].props.children).toBe("1 de 10")
+    expect(texts[1].props.children).toBe("1 of 10")
 
     const buttons = root.findAllByType(Button);
     expect(buttons).toHaveLength(2);
@@ -282,7 +282,7 @@ describe("DetailScreen", () => {
 
     const buttons = root.findAllByType(Button);
     expect(buttons).toHaveLength(3);
-    expect(buttons[2].props.title).toBe("Scrollear al inicio")
+    expect(buttons[2].props.title).toBe("Scroll to top")
 
     spyDispatch.mockRestore();
     spySelector.mockRestore();

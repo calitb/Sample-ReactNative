@@ -55,6 +55,7 @@
   },
   "private": true,
   "jest": {
+    "setupFiles": ["./jest-setup.tsx"],
     "preset": "jest-expo",
     "reporters": [
       "default",
