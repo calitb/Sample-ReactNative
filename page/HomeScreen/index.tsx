@@ -1,4 +1,4 @@
-import { ActivityIndicator, Button, FlatList, Platform, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Button, FlatList, Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { goBack, goForward, loadCharacters } from "../../redux/actions";
 import { useDispatch, useSelector } from '../../redux/useRedux';
@@ -7,6 +7,7 @@ import { Character } from "../../redux/reducer";
 import CharacterListItem from "../../components/CharacterListItem";
 import { HomeScreenStackProp } from "../../types";
 import STRINGS from "../../strings";
+import { TextInput } from "react-native-paper";
 
 export default function HomeScreen(props: HomeScreenStackProp) {
   const [search, setSearch] = useState('');
@@ -50,14 +51,15 @@ export default function HomeScreen(props: HomeScreenStackProp) {
         }} title={STRINGS.NEXT_BUTTON} />
       </View>
 
-      <View style={styles.searchbar}>
-        <TextInput
-          placeholder={STRINGS.FILTER_PLACEHOLDER}
-          clearButtonMode="while-editing"
-          value={search}
-          onChangeText={onChangeSearch}
-        />
-      </View>
+      <TextInput
+        style={styles.searchbar}
+        mode="outlined"
+        placeholder={STRINGS.FILTER_PLACEHOLDER}
+        clearButtonMode="while-editing"
+        value={search}
+        onChangeText={onChangeSearch}
+        theme={{ colors: { primary: 'blue' } }}
+      />
 
       <FlatList<Character>
         numColumns={3}
@@ -95,13 +97,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   searchbar: {
-    paddingHorizontal: 10,
-    borderColor: 'black',
-    borderWidth: 0.5,
-    height: 44,
-    justifyContent: 'center'
+    marginHorizontal: 5
   },
   buttons: {
+    backgroundColor: 'white',
     paddingHorizontal: 10,
     justifyContent: 'space-between',
     flexDirection: 'row',

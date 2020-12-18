@@ -1,7 +1,7 @@
 import * as ReduxActions from '../../redux/actions';
 import * as ReduxHooks from '../../redux/useRedux';
 
-import { Button, FlatList, Platform, Text, TextInput } from 'react-native';
+import { Button, FlatList, Platform, Text } from 'react-native';
 import HomeScreen, { LoadingView } from "./index";
 import { RootStackParamList, Routes } from '../../types';
 import { characterMorty, characterRick } from "../../fixtures/character";
@@ -13,6 +13,7 @@ import { Route } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { State } from "../../redux/reducer";
 import TestRenderer from "react-test-renderer";
+import { TextInput } from 'react-native-paper';
 import { stateFixture } from "../../fixtures/state";
 
 // function mockComponent<P extends React.DOMAttributes<T>, T extends Element>(name: string): (props: React.ClassAttributes<T> & P) => React.DOMElement<P, T> {

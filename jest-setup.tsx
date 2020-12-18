@@ -12,8 +12,9 @@ mockCard.Cover = mockComponent('Card.Cover');
 mockCard.Content = mockComponent('Card.Content');
 jest.mock('react-native-paper', () => ({
   Avatar: mockComponent('Avatar'),
+  Card: mockCard,
   Paragraph: mockComponent('Paragraph'),
+  TextInput: mockComponent('TextInput'),
   Title: mockComponent('Title'),
-  Card: mockCard
 }))
 
