@@ -12,6 +12,7 @@ import STRINGS from "./strings";
 import { StatusBar } from 'expo-status-bar';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import store from './redux/store';
+import useAppState from './hooks/useAppState';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +26,9 @@ const theme = {
 };
 
 export default function App() {
+  const appState = useAppState();
+  console.log("State changed: ", { appState })
+
   return (
     <ReduxProvider store={store}>
       <PaperProvider theme={theme}
